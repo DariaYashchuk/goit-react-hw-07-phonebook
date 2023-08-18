@@ -52,16 +52,4 @@ export const contactsSlice = createSlice({
   },
 });
 
-// addContact({ items }, action) {
-//   console.log(items);
-//   items.push({ ...action.payload });
-// },
-// deleteContact({ items }, action) {
-//   console.log(items);
-//   return items.filter(item => item.id !== action.payload);
-// },
-
-// export const { fetchingInProgress, fetchingSuccess, fetchingError } =
-//   contactsSlice.actions;
-
 export default contactsSlice.reducer;

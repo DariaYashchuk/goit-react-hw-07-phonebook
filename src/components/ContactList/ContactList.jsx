@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { getContacts } from 'redux/contacts/contactsSelector';
 import { filterSelector } from 'redux/filter/filterSelector';
-// import { filterSelector } from 'redux/filter/filterSelector';
 
 const ContactList = () => {
   const dispatch = useDispatch();
 
   const contacts = useSelector(getContacts);
 
-  console.log(contacts);
   const filter = useSelector(filterSelector);
   const handleDeleteContact = id => dispatch(deleteContact(id));
 
@@ -24,7 +22,6 @@ const ContactList = () => {
   };
 
   const visibleContacts = getVisibleContacts();
-  // const visibleContacts = contacts;
 
   return (
     <ul>
