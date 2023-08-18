@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
-import { contactsSelector } from 'redux/contacts/contactsSelector';
+import { addContact } from 'redux/operations';
+import { getContacts } from 'redux/contacts/contactsSelector';
 
 const ContactForm = () => {
-  const contacts = useSelector(contactsSelector);
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const nameInputId = nanoid();
-  const numberInputId = nanoid();
+  const phoneInputId = nanoid();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -21,8 +21,8 @@ const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
 
       default:
@@ -33,16 +33,15 @@ const ContactForm = () => {
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   const onSubmitClick = e => {
     e.preventDefault();
 
     const contact = {
-      id: nanoid(),
       name,
-      number,
+      phone,
     };
 
     const isNameIncluded = contacts.some(
@@ -70,15 +69,15 @@ const ContactForm = () => {
           required
         />
       </label>
-      <label htmlFor={numberInputId}>
+      <label htmlFor={phoneInputId}>
         Number
         <input
-          id={numberInputId}
+          id={phoneInputId}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={number}
+          value={phone}
           onChange={handleChange}
           required
         />
