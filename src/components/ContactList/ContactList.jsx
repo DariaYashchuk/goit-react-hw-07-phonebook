@@ -1,31 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AiOutlineUserDelete } from 'react-icons/ai';
 import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { deleteContact } from 'redux/operations';
 import { getContacts } from 'redux/contacts/contactsSelector';
 import { filterSelector } from 'redux/filter/filterSelector';
+// import { filterSelector } from 'redux/filter/filterSelector';
 
 const ContactList = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   const contacts = useSelector(getContacts);
+
+  console.log(contacts);
   const filter = useSelector(filterSelector);
   const handleDeleteContact = id => dispatch(deleteContact(id));
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
-    console.log(contacts);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
   const visibleContacts = getVisibleContacts();
+  // const visibleContacts = contacts;
 
   return (
     <ul>

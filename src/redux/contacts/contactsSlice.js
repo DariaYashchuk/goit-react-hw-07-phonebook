@@ -41,7 +41,7 @@ export const contactsSlice = createSlice(
         state.items = action.payload;
       },
 
-      // ====== addTask ====
+      // ====== Contact ====
 
       [addContact.fulfilled](state, action) {
         state.isLoading = false;
@@ -53,11 +53,7 @@ export const contactsSlice = createSlice(
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = state.items.filter(item => item.id !== action.payload);
-      // const index = state.items.findIndex(
-      //   contact => contact.id === action.payload.id
-      // );
-      // state.items.splice(index, 1);
+      state.items.filter(item => item.id !== action.payload);
     },
   }
 
