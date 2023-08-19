@@ -1,12 +1,18 @@
+import css from './ContactForm.module.css';
+import clsx from 'clsx';
+import { RotatingLines } from 'react-loader-spinner';
+import { AiOutlinePlus } from 'react-icons/ai';
+
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
-import { getContacts } from 'redux/contacts/contactsSelector';
+import { getContacts, getIsLoading } from 'redux/contacts/contactsSelector';
 
 const ContactForm = () => {
   const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -54,35 +60,57 @@ const ContactForm = () => {
     reset();
   };
 
+  const buttonContent = isLoading ? (
+    <RotatingLines
+      strokeColor="white"
+      strokeWidth="5"
+      animationDuration="0.75"
+      visible={true}
+    />
+  ) : (
+    <AiOutlinePlus />
+  );
+
   return (
-    <form onSubmit={onSubmitClick}>
-      <label htmlFor={nameInputId}>
-        Name
-        <input
-          id={nameInputId}
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          value={name}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label htmlFor={phoneInputId}>
-        Number
-        <input
-          id={phoneInputId}
-          type="tel"
-          name="phone"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={phone}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <button type="submit">Add contact</button>
+    <form onSubmit={onSubmitClick} className={css.form}>
+      <h1 className={css.title}>Phonebook</h1>
+      <div className={css.inputswrapper}>
+        <label htmlFor={nameInputId} className={css.inputs}>
+          <p className={css.text}>Name</p>
+          <input
+            id={nameInputId}
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            value={name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label
+          htmlFor={phoneInputId}
+          className={clsx(css.inputs, css.numberinput)}
+        >
+          <p className={css.text}>Number</p>
+          <input
+            id={phoneInputId}
+            type="tel"
+            name="phone"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            value={phone}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button
+          type="submit"
+          className={clsx('button-common button-main', css.buttonadd)}
+        >
+          {buttonContent}
+        </button>
+      </div>
     </form>
   );
 };

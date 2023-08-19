@@ -1,18 +1,15 @@
 import ContactForm from 'components/ContactForm';
-import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
-import { getError, getIsLoading } from 'redux/contacts/contactsSelector';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { NavLink, Route, Routes } from 'react-router-dom';
 
 // import { useEffect } from 'react';
 // import { fetchContacts } from 'redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -20,15 +17,24 @@ export const App = () => {
 
   return (
     <div className="container">
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-
-      <Filter />
-      {/* {error && <p>{error}</p>} */}
-      {isLoading && !error && <b>Request in progress...</b>}
-      {/* {items.length > 0 && <ContactList />} */}
-      <ContactList />
+      <div className="nav-wrap">
+        <NavLink
+          to="/"
+          className="button-common btn-nav btn-splitter nav-btn-text"
+        >
+          Phonebook
+        </NavLink>
+        <NavLink to="/contacts" className="button-common btn-nav nav-btn-text">
+          Contacts
+        </NavLink>
+      </div>
+      <div className="content-wrap">
+        <Routes>
+          <Route path="/" element={<ContactForm />} />
+          <Route path="/contacts" element={<ContactList />} />
+          <Route path="*" element={<ContactForm />} />
+        </Routes>
+      </div>
     </div>
   );
 };

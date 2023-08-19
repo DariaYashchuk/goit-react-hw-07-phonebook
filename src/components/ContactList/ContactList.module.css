@@ -14,8 +14,3 @@ li p {
   display: flex;
   align-items: center;
 }
-
-.button {
-  margin-left: 30px;
-  height: 40px;
-}
