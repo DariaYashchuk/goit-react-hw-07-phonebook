@@ -1,10 +1,16 @@
-.icon {
+.usericon {
   width: 30px;
   height: 30px;
   margin-right: 20px;
 
   display: block;
 }
+
+.deleteicon {
+  width: 16px;
+  height: 16px;
+}
+
 li {
   display: flex;
   align-items: center;
@@ -13,4 +19,15 @@ li {
 li p {
   display: flex;
   align-items: center;
+}
+
+.contactswrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contactcontent {
+  margin-right: 16px;
 }

@@ -12,44 +12,12 @@
   flex-direction: column;
 }
 
-.title {
-  text-transform: uppercase;
-  font-weight: normal;
-  animation: header-focus 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
-  margin-bottom: 40px;
-}
-
-@keyframes header-focus {
-  0% {
-    letter-spacing: 1em;
-    transform: translateZ(300px);
-    filter: blur(12px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateZ(12px);
-    filter: blur(0);
-    opacity: 1;
-  }
-}
-
 .inputs {
   animation: slide-fwd-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: 0.75s;
   display: block;
 
   margin-bottom: 24px;
-}
-
-.text {
-  display: block;
-  font-size: 16px;
-  position: absolute;
-  color: #393953;
-
-  top: 4px;
-  left: 4px;
 }
 
 input {
@@ -91,13 +59,8 @@ input:focus {
 .buttonadd {
   animation: scale-in-center 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: 1.5s;
-  border-radius: 50%;
-  /* transform: translate(-10px, -10px); */
-}
 
-.buttonadd svg {
-  width: 24px;
-  height: 24px;
+  /* transform: translate(-10px, -10px); */
 }
 
 @keyframes scale-in-center {

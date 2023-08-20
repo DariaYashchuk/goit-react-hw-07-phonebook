@@ -66,17 +66,18 @@ const ContactForm = () => {
       strokeWidth="5"
       animationDuration="0.75"
       visible={true}
+      className="iconforbutton"
     />
   ) : (
-    <AiOutlinePlus />
+    <AiOutlinePlus className="iconforbutton" />
   );
 
   return (
     <form onSubmit={onSubmitClick} className={css.form}>
-      <h1 className={css.title}>Phonebook</h1>
+      <h1 className="title">Phonebook</h1>
       <div className={css.inputswrapper}>
         <label htmlFor={nameInputId} className={css.inputs}>
-          <p className={css.text}>Name</p>
+          <p className="text">Name</p>
           <input
             id={nameInputId}
             type="text"
@@ -92,7 +93,7 @@ const ContactForm = () => {
           htmlFor={phoneInputId}
           className={clsx(css.inputs, css.numberinput)}
         >
-          <p className={css.text}>Number</p>
+          <p className="text">Number</p>
           <input
             id={phoneInputId}
             type="tel"

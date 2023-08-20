@@ -10,6 +10,7 @@ import {
 } from 'redux/contacts/contactsSelector';
 import { filterSelector } from 'redux/filter/filterSelector';
 import Filter from 'components/Filter';
+import { BiTrash } from 'react-icons/bi';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -31,27 +32,29 @@ const ContactList = () => {
   const visibleContacts = getVisibleContacts();
 
   return (
-    <div>
-      <h1>Contacts</h1>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ul>
-        {visibleContacts.map(({ id, name, phone }) => (
-          <li key={id}>
-            <p>
-              <AiOutlineUserDelete className={css.icon} />
-              {name}: {phone}
-            </p>
-            <button
-              className="button-common button-main"
-              onClick={() => handleDeleteContact(id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h1 className="title">Contacts</h1>
+      <div className={css.contactswrapper}>
+        <Filter />
+        {isLoading && !error && <b>Request in progress...</b>}
+        <ul>
+          {visibleContacts.map(({ id, name, phone }) => (
+            <li key={id}>
+              <p className={css.contactcontent}>
+                <AiOutlineUserDelete className={css.usericon} />
+                {name}: {phone}
+              </p>
+              <button
+                className="button-common button-main"
+                onClick={() => handleDeleteContact(id)}
+              >
+                <BiTrash className={css.deleteicon} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
