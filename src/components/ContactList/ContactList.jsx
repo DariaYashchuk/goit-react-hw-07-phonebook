@@ -11,6 +11,8 @@ import {
 import { filterSelector } from 'redux/filter/filterSelector';
 import Filter from 'components/Filter';
 import { BiTrash } from 'react-icons/bi';
+import clsx from 'clsx';
+import { RotatingLines } from 'react-loader-spinner';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -31,30 +33,42 @@ const ContactList = () => {
 
   const visibleContacts = getVisibleContacts();
 
+  const deleteButtonContent =
+    isLoading && !error ? (
+      <RotatingLines
+        strokeColor="white"
+        strokeWidth="5"
+        animationDuration="0.75"
+        visible={true}
+        width="16px"
+        height="16px"
+      />
+    ) : (
+      <BiTrash className={css.deleteicon} />
+    );
   return (
-    <>
+    <div className={css.contentwrapper}>
       <h1 className="title">Contacts</h1>
       <div className={css.contactswrapper}>
         <Filter />
-        {isLoading && !error && <b>Request in progress...</b>}
-        <ul>
+        <ul className={css.contactslist}>
           {visibleContacts.map(({ id, name, phone }) => (
-            <li key={id}>
-              <p className={css.contactcontent}>
+            <li key={id} className={css.contactitem}>
+              <p className={css.contactinfo}>
                 <AiOutlineUserDelete className={css.usericon} />
                 {name}: {phone}
               </p>
               <button
-                className="button-common button-main"
+                className={clsx('button-common button-main', css.deletebutton)}
                 onClick={() => handleDeleteContact(id)}
               >
-                <BiTrash className={css.deleteicon} />
+                {deleteButtonContent}
               </button>
             </li>
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

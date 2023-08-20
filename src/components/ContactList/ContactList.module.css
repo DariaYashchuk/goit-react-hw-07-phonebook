@@ -1,3 +1,11 @@
+.contentwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 450px;
+}
+
 .usericon {
   width: 30px;
   height: 30px;
@@ -28,6 +36,24 @@ li p {
   flex-direction: column;
 }
 
-.contactcontent {
-  margin-right: 16px;
+.contactslist {
+  display: block;
+  overflow: scroll;
+  height: 270px;
+
+  /* border: 1px black solid; */
+  padding: 16px;
+}
+
+.contactitem {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.contactinfo {
+  margin-right: 8px;
+}
+
+.deletebutton {
+  margin-left: auto;
 }

@@ -20,20 +20,6 @@
   margin-bottom: 24px;
 }
 
-input {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  background-color: #f5f5f7;
-  border: 1px #f5f5f7 solid;
-  color: #222222;
-  padding: 24px 8px 8px 8px;
-
-  border-radius: 4px;
-
-  /* transition: border-colour ; */
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 input:focus {
   outline: none;
   border: 1px #393953 solid;

@@ -66,7 +66,8 @@ const ContactForm = () => {
       strokeWidth="5"
       animationDuration="0.75"
       visible={true}
-      className="iconforbutton"
+      width="24px"
+      height="24px"
     />
   ) : (
     <AiOutlinePlus className="iconforbutton" />
