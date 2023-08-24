@@ -28,7 +28,7 @@ const ContactList = () => {
         <Filter />
         <ul className={css.contactslist}>
           {visibleContacts.map(({ id, name, phone }) => (
-            <ContactListItem key={id} name={name} phone={phone} />
+            <ContactListItem key={id} name={name} phone={phone} id={id} />
           ))}
         </ul>
       </div>
