@@ -39,18 +39,7 @@ export const ContactListItem = ({ name, phone, id }) => {
         className={clsx('button-common button-main', css.deletebutton)}
         onClick={() => handleDeleteContact(id)}
       >
-        {isLoading && !error ? (
-          <RotatingLines
-            strokeColor="white"
-            strokeWidth="5"
-            animationDuration="0.75"
-            visible={true}
-            width="16px"
-            height="16px"
-          />
-        ) : (
-          <BiTrash className={css.deleteicon} />
-        )}
+        {deleteButtonContent}
       </button>
     </li>
   );
